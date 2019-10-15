@@ -7,7 +7,7 @@ remove='\xE2\x9C\x82'
 
 printf "\n${redis}  Setup Redis Cluster ${redis}\n"
 
-kubectl apply -f ./redis-operator/all-redis-operator-resources.yaml
+kubectl create -f ./redis-operator/all-redis-operator-resources.yaml
 sleep 10s
-kubectl apply -f ./redis-operator/basic.yaml
+kubectl create -f ./redis-operator/basic.yaml
 

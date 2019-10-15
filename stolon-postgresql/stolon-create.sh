@@ -15,10 +15,10 @@ if [ ${STOLON_NAMESPACE} != "default" ]; then
 fi
 
 sed -i "s/namespace:.*$/namespace: ${STOLON_NAMESPACE}/g" "${YAML_DIR}"/role.yaml
-kubectl apply -f "${YAML_DIR}"/role.yaml
+kubectl create -f "${YAML_DIR}"/role.yaml
 
 sed -i "s/namespace:.*$/namespace: ${STOLON_NAMESPACE}/g" "${YAML_DIR}"/role-binding.yaml
-kubectl apply -f "${YAML_DIR}"/role-binding.yaml
+kubectl create -f "${YAML_DIR}"/role-binding.yaml
 
 kubectl -n ${STOLON_NAMESPACE} run -i -t stolonctl --image=${STOLON_IMAGE} --restart=Never --rm -- /usr/local/bin/stolonctl --cluster-name=kube-stolon --store-backend=kubernetes --kube-resource-kind=configmap init -y
 kubectl -n ${STOLON_NAMESPACE} create -f "${YAML_DIR}"/secret.yaml
