@@ -1,0 +1,50 @@
+# config file version
+apiVersion: 1
+
+# list of datasources to insert/update depending
+# what's available in the database
+datasources:
+  # <string, required> name of the datasource. Required
+- name: influxdb
+  # <string, required> datasource type. Required
+  type: influxdb
+  # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
+  access: proxy
+  # <int> org id. will default to orgId 1 if not specified
+  orgId: 1
+  # <string> url
+  url: http://influxdb:8086
+  # <string> database password, if used
+  secureJsonData.password: root
+  # <string> database user, if used
+  user: root
+  # <string> database name, if used
+  database: statistics
+  # version
+  version: 1
+  # <bool> allow users to edit datasources from the UI.
+  editable: false
+- name: PowerVilleCC
+  type: mssql
+  url: 10.0.0.192:57319
+  database: PowerVilleCC
+  user: sa
+  secureJsonData:
+    password: Dialogic2016
+  editable: false
+- name: PowerVilleShared
+  type: mssql
+  url: 10.0.0.192:57319
+  database: PowerVilleSharedProductData
+  user: sa
+  secureJsonData:
+    password: Dialogic2016
+  editable: false
+- name: PowerNovaReports
+  type: mssql
+  url: 10.0.0.192:57319
+  database: PowerNovaReports
+  user: sa
+  secureJsonData:
+    password: Dialogic2016
+  editable: false
