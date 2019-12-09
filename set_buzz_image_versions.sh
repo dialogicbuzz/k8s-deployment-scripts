@@ -30,7 +30,7 @@ set_buzz_image_version()
   sed -i "s/$image_tag_key/$docker_hub_version/g" $target_path
 }
 
-release_verion=4.1
+release_verion=4.1.0
 
 buzz_app=buzz-conf
 source=./template/buzz-server/buzz/buzz-conf-deployment.yaml
