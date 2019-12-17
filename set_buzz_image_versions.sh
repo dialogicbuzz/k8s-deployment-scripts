@@ -51,8 +51,8 @@ image_tag_key=BUZZ_WEBAPP_IMAGE_TAG
 set_buzz_image_version $buzz_app $release_verion $source $target $image_tag_key
 
 buzz_app=buzzim-admin
-source=./template/buzz-im-admin/buzzim-admin-statefulset.yaml
-target=./buzz-im-admin/buzzim-admin-statefulset.yaml
+source=./template/buzz-im-admin/buzzim-admin-deployment.yaml
+target=./buzz-im-admin/buzzim-admin-deployment.yaml
 image_tag_key=BUZZIM_ADMIN_IMAGE_TAG
 set_buzz_image_version $buzz_app $release_verion $source $target $image_tag_key
 

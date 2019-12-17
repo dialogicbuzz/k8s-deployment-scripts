@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: buzzim-admin
+    app.kubernetes.io/version : '1.0.0'
+    app.kubernetes.io/component: im-admin-service
+    app.kubernetes.io/part-of: buzzim
+  name: buzzim-admin
+  namespace: buzzim-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: buzzim-admin
+
+  template:
+    metadata:
+      labels:
+        app: buzzim-admin
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: buzzim-admin
+        image: dialogicbuzz/buzzim-admin:BUZZIM_ADMIN_IMAGE_TAG
+        imagePullPolicy: IfNotPresent
+
+        envFrom:
+        - configMapRef:
+            name: buzzim-admin-configmap
+        - secretRef:
+            name: buzzim-admin-secret
+        - secretRef:
+            name: buzzim-admin-tls-secret
+            optional: true
+
+        ports:
+          - name: admin-http
+            protocol: TCP
+            containerPort: 11080
+

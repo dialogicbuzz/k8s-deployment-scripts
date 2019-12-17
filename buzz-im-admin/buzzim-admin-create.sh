@@ -18,6 +18,5 @@ kubectl -n buzzim-admin wait --for=condition=complete --timeout=30s job/buzzim-a
 
 # Deploy the service.
 kubectl create -f buzzim-admin-service.yaml
-kubectl create -f buzzim-admin-statefulset.yaml
-
+kubectl create -f buzzim-admin-deployment.yaml
 
