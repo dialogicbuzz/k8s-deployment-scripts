@@ -24,27 +24,3 @@ datasources:
   version: 1
   # <bool> allow users to edit datasources from the UI.
   editable: false
-- name: PowerVilleCC
-  type: mssql
-  url: 10.0.0.192:57319
-  database: PowerVilleCC
-  user: sa
-  secureJsonData:
-    password: Dialogic2016
-  editable: false
-- name: PowerVilleShared
-  type: mssql
-  url: 10.0.0.192:57319
-  database: PowerVilleSharedProductData
-  user: sa
-  secureJsonData:
-    password: Dialogic2016
-  editable: false
-- name: PowerNovaReports
-  type: mssql
-  url: 10.0.0.192:57319
-  database: PowerNovaReports
-  user: sa
-  secureJsonData:
-    password: Dialogic2016
-  editable: false

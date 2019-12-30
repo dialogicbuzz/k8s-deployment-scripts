@@ -1,0 +1,14 @@
+{
+# The datasource name which appears in grafana
+  "name": "PowerVilleShared",
+# The database type
+  "type": "mssql",
+# The entrypoint for the database server
+  "url": "10.0.0.192:57319",
+# The database name
+  "database": "PowerVilleSharedProductData",
+# The database user
+  "user": "sa",
+# The password of the database user
+  "password": "********"
+}

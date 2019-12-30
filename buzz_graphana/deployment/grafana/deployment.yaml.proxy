@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    k8s-app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: grafana
+  template:
+    metadata:
+      labels:
+        k8s-app: grafana
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: grafana-creds
+        name: grafana
+        image: dialogicbuzz/grafana-plugins:latest
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/grafana/provisioning/datasources/influxdb-datasource.yaml
+          name: grafana-config
+          readOnly: true
+          subPath: influxdb-datasource.yaml
+        - mountPath: /etc/grafana/provisioning/dashboards/grafana-dashboard-provider.yaml
+          name: grafana-config
+          readOnly: true
+          subPath: grafana-dashboard-provider.yaml
+        - mountPath: /etc/grafana/provisioning/dashboards/system.json
+          name: grafana-config
+          readOnly: true
+          subPath: system.json
+        - mountPath: /etc/grafana/provisioning/dashboards/tenant.json
+          name: grafana-config
+          readOnly: true
+          subPath: tenant.json
+        - mountPath: /etc/grafana/provisioning/dashboards/subscriber.json
+          name: grafana-config
+          readOnly: true
+          subPath: subscriber.json
+        env:
+          - name: GF_SERVER_DOMAIN
+            value: 10.0.0.62
+          - name: GF_SERVER_ROOT_URL
+            value: http://%(domain)/grafana
+          - name: GF_USERS_ALLOW_SIGN_UP
+            value: "false"
+          - name: GF_USERS_AUTO_ASSIGN_ORG
+            value: "true"
+          - name: GF_USERS_AUTO_ASSIGN_ORG_ROLE
+            value: Editor
+          - name: GF_AUTH_PROXY_ENABLED
+            value: "true"
+          - name: GF_AUTH_PROXY_HEADER_NANE
+            value: X-WEBAUTH-USER
+          - name: GF_AUTH_PROXY_HEAD_PROPERTY
+            value: username
+          - name: GF_AUTH_PROXY_AUTO_SIGN_UP
+            value: "true"
+      volumes:
+      - configMap:
+          name: grafana-config
+        name: grafana-config

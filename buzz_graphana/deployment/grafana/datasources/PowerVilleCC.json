@@ -1,0 +1,8 @@
+{
+  "name": "PowerVilleCC",
+  "type": "mssql",
+  "url": "cc_host:cc_port",
+  "database": "PowerVilleCC",
+  "user": "cc_user",
+  "password": "cc_pwd"
+}

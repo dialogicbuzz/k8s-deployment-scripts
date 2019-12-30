@@ -1,0 +1,8 @@
+{
+  "name": "PowerNovaReports",
+  "type": "mssql",
+  "url": "rpt_host:rpt_port",
+  "database": "PowerNovaReports",
+  "user": "rpt_user",
+  "password": "rpt_pwd"
+}

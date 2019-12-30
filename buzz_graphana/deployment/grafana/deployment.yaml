@@ -20,7 +20,7 @@ spec:
         - secretRef:
             name: grafana-creds
         name: grafana
-        image: grafana/grafana
+        image: dialogicbuzz/grafana-plugins:latest
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -45,7 +45,17 @@ spec:
           name: grafana-config
           readOnly: true
           subPath: subscriber.json
+        env:
+          - name: GF_AUTH_DISABLE_LOGIN_FORM
+            value: "false"
+          - name: GF_AUTH_ANONYMOUS_ENABLED
+            value: "true"
+          - name: GF_AUTH_ANONYMOUS_ORG_NAME
+            value: Main Org.
+          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+            value: Editor
       volumes:
       - configMap:
           name: grafana-config
         name: grafana-config
+

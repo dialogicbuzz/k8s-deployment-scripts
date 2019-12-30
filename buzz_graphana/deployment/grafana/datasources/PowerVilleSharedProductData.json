@@ -1,0 +1,8 @@
+{
+  "name": "PowerVilleShared",
+  "type": "mssql",
+  "url": "shared_host:shared_port",
+  "database": "PowerVilleSharedProductData",
+  "user": "shared_user",
+  "password": "shared_pwd"
+}
