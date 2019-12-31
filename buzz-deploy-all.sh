@@ -14,5 +14,5 @@ cd buzz-im-deploy
 cd ..
 
 cd buzz-server
-./all-start.sh
+./all-create.sh
 cd ..
