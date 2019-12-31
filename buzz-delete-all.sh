@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd buzz-server
-./all-stop.sh
+./all-delete.sh
 cd ..
 
 cd buzz-im-deploy
