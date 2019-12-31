@@ -16,9 +16,6 @@ set_buzz_image_version()
     cp $source_path $target_path
   fi
   
-  #login to docker hub
-  docker login https://index.docker.io
-
   docker_hub_repository=dialogicbuzz
   
   docker_hub_image_name=$docker_hub_repository/$docker_iamge_name:$docker_iamge_base_tag
