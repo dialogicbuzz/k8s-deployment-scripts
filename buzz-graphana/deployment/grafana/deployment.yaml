@@ -54,6 +54,10 @@ spec:
             value: Main Org.
           - name: GF_AUTH_ANONYMOUS_ORG_ROLE
             value: Editor
+          - name: GF_SERVER_ROOT_URL
+            value: /buzz/dashboard/
+          - name: GF_SERVER_SERVE_FROM_SUB_PATH
+            value: "true"
       volumes:
       - configMap:
           name: grafana-config

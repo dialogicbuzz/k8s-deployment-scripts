@@ -10,4 +10,4 @@ kubectl create configmap grafana-config -n monitoring \
         --from-file=system.json="$BASEDIR/dashboards/system.json" \
         --from-file=subscriber.json="$BASEDIR/dashboards/subscriber.json" \
         --from-file=tenant.json="$BASEDIR/dashboards/tenant.json" 
-
+kubectl apply -f "$BASEDIR/grafana-ingress.yaml"
