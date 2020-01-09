@@ -21,24 +21,28 @@ read -e -i "$cc_port" -p "Database server port: " rpt_port
 read -e -i "$cc_user" -p "Database user: " rpt_user
 read -e -i "$cc_pwd" -p "Database password: " rpt_pwd
 
+tmp_file=$DS_DIR/tmp
 for jf in $DS_DIR/*.json; do
   [ ! -f $jf ] && break
-  if grep -q 'cc_host' $jf; then
-    sed -i "s/cc_host/$cc_host/" $jf
-    sed -i "s/cc_port/$cc_port/" $jf
-    sed -i "s/cc_user/$cc_user/" $jf
-    sed -i "s/cc_pwd/$cc_pwd/" $jf
+  if grep -q 'PowerVilleCC' $jf; then
+    cat $jf | \
+      jq '.url="'$cc_host':'$cc_port'"' | \
+      jq '.user="'$cc_user'"' | \
+      jq '.password="'$cc_pwd'"' \
+      > $tmp_file  && mv $tmp_file $jf
   fi
-  if grep -q 'shared_host' $jf; then
-    sed -i "s/shared_host/$cc_host/" $jf
-    sed -i "s/shared_port/$cc_port/" $jf
-    sed -i "s/shared_user/$cc_user/" $jf
-    sed -i "s/shared_pwd/$cc_pwd/" $jf
+  if grep -q 'PowerVilleSharedProductData' $jf; then
+    cat $jf | \
+      jq '.url="'$shared_host':'$shared_port'"' | \
+      jq '.user="'$shared_user'"' | \
+      jq '.password="'$shared_pwd'"' \
+      > $tmp_file  && mv $tmp_file $jf
   fi
-  if grep -q 'rpt_host' $jf; then
-    sed -i "s/rpt_host/$cc_host/" $jf
-    sed -i "s/rpt_port/$cc_port/" $jf
-    sed -i "s/rpt_user/$cc_user/" $jf
-    sed -i "s/rpt_pwd/$cc_pwd/" $jf
+  if grep -q 'PowerNovaReports' $jf; then
+    cat $jf | \
+      jq '.url="'$rpt_host':'$rpt_port'"' | \
+      jq '.user="'$rpt_user'"' | \
+      jq '.password="'$rpt_pwd'"' \
+      > $tmp_file  && mv $tmp_file $jf
   fi
 done

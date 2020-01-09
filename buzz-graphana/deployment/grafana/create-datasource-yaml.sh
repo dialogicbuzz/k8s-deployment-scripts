@@ -10,7 +10,7 @@ for jf in $DS_DIR/*.json; do
   echo "- name: $(jq -r .name $jf)" >> $TARGET 
   echo "  type: $(jq -r .type $jf)" >> $TARGET
   echo "  url: $(jq -r .url $jf)" >> $TARGET
-  echo "  database: $(jq -r .name $jf)" >> $TARGET
+  echo "  database: $(jq -r .database $jf)" >> $TARGET
   echo "  user: $(jq -r .user $jf)" >> $TARGET
   echo "  secureJsonData:" >> $TARGET
   echo "    password: $(jq -r .password $jf)" >> $TARGET 

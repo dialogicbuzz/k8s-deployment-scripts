@@ -58,6 +58,8 @@ spec:
             value: /buzz/dashboard/
           - name: GF_SERVER_SERVE_FROM_SUB_PATH
             value: "true"
+          - name: GF_SECURITY_ALLOW_EMBEDDING
+            value: "true"
       volumes:
       - configMap:
           name: grafana-config
